@@ -6,55 +6,131 @@
 #include <QPixmap>
 #include <QImage>
 #include <jpeglib.h>
+#include "stb_image.h"
+#include <transformdialog.h>
 
-struct Pixel {
-    uint8_t r,g,b;
-};
+static QImage QImageFromImage(const Image* img) {
+    if (!img || !img->pixels || img->w <= 0 || img->h <= 0)
+        return QImage();
+
+    QImage::Format format =
+        (img->channels == 3) ? QImage::Format_RGB888 :
+            (img->channels == 4) ? QImage::Format_RGBA8888 :
+            QImage::Format_Invalid;
+
+    if (format == QImage::Format_Invalid)
+        return QImage();
+
+    QImage result(img->w, img->h, format);
+    memcpy(result.bits(), img->pixels, img->w * img->h * img->channels);
+
+    return result;
+}
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    : QMainWindow(parent),
+    ui(new Ui::MainWindow),
+    image(nullptr)
 {
     ui->setupUi(this);
 
-    QMenu *menu = this->menuBar()->addMenu("Arquivo");
-
-    QAction *openAction = new QAction("Abrir", this);
-    QAction *saveAction = new QAction("Salvar", this);
-    QAction *aboutAction = new QAction("Sobre", this);
-    QAction *exitAction = new QAction("Sair", this);
-
-    menu->addAction(openAction);
-    menu->addAction(saveAction);
-    menu->addAction(aboutAction);
-    menu->addAction(exitAction);
-
     QWidget *widget = new QWidget(this);
-    this->setCentralWidget(widget);
+    setCentralWidget(widget);
+
     QVBoxLayout *layout = new QVBoxLayout(widget);
     widget->setLayout(layout);
-    this->label = new QLabel(this);
-    QPixmap pix(":/images/images/no-image.png");
-    QPixmap scaled = pix.scaled(512, 512, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    label->setPixmap(scaled);
+
+    label = new QLabel(this);
     layout->addWidget(label, 0, Qt::AlignCenter);
 
-    connect(openAction, &QAction::triggered, this, &MainWindow::onExplore);
-    connect(exitAction, &QAction::triggered, this, &QWidget::close);
+    connect(ui->actionAbrir, &QAction::triggered, this, &MainWindow::onExplore);
+    connect(ui->actionTranslate, &QAction::triggered, this, &MainWindow::onTranslate);
+    connect(ui->actionFechar, &QAction::triggered, this, &QWidget::close);
+    connect(ui->actionRotate, &QAction::triggered, this, &MainWindow::onRotate);
+    connect(ui->actionMirrorHorizontal, &QAction::triggered, this, &MainWindow::onMirrorHorizontal);
+    connect(ui->actionMirrorVertical, &QAction::triggered, this, &MainWindow::onMirrorVertical);
+    
+    setImage(":/images/images/no-image.png");
 }
 
-MainWindow::~MainWindow()
-{
+MainWindow::~MainWindow() {
+    delete image;
     delete ui;
 }
 
+void MainWindow::replaceImage(Image* newImg) {
+    if (image != newImg) {
+        delete image;
+        image = newImg;
+    }
+    display();
+}
+
+void MainWindow::display() {
+    label->setPixmap(
+        QPixmap::fromImage(QImageFromImage(image))
+            .scaled(512, 512, Qt::KeepAspectRatio, Qt::SmoothTransformation)
+        );
+}
+
+void MainWindow::setImage(const char* filename) {
+    replaceImage(new Image(filename));
+}
+
+void MainWindow::setImage(Image *img) {
+    replaceImage(img);
+}
+
 void MainWindow::onExplore() {
-    this->filePath = QFileDialog::getOpenFileName(
+    QString file_path = QFileDialog::getOpenFileName(
         this,
         "Escolha uma imagem",
         QDir::homePath(),
-        "Images (*.jpg *.jpeg)"
+        "Images (*.jpg *.jpeg *.png)"
         );
 
-    qDebug() << this->filePath;
+    if (file_path.isEmpty())
+        return;
+
+    replaceImage(new Image(file_path.toUtf8().constData()));
+}
+
+void MainWindow::onTranslate() {
+     TransformDialog dlg(
+        {
+            {"Translate X", "0"},
+            {"Translate Y", "0"}
+        },
+        this
+    );
+
+    if (dlg.exec() == QDialog::Accepted) {
+        std::vector<QString> values = dlg.getValues();
+        int tx = values[0].toInt();
+        int ty = values[1].toInt();
+        this->replaceImage(image->translate(tx, ty));
+    }
+}
+
+void MainWindow::onRotate() {
+     TransformDialog dlg(
+        {
+            {"Angle (degrees)", "0"}
+        },
+        this
+    );
+
+    if (dlg.exec() == QDialog::Accepted) {
+        std::vector<QString> values = dlg.getValues();
+        float angle = values[0].toFloat();
+        this->replaceImage(image->rotate(angle));
+    }
+}
+
+void MainWindow::onMirrorHorizontal() {
+    this->replaceImage(image->mirror_h());
+}
+
+void MainWindow::onMirrorVertical() {
+    this->replaceImage(image->mirror_v());
 }

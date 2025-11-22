@@ -23,8 +23,68 @@
      <height>22</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuArquivo">
+    <property name="title">
+     <string>Arquivo</string>
+    </property>
+    <addaction name="actionAbrir"/>
+    <addaction name="actionSalvar"/>
+    <addaction name="actionFechar"/>
+   </widget>
+   <widget class="QMenu" name="menuManipulate">
+    <property name="title">
+     <string>Manipulate</string>
+    </property>
+    <addaction name="actionTranslate"/>
+    <addaction name="actionRotate"/>
+    <addaction name="actionMirrorVertical"/>
+    <addaction name="actionMirrorHorizontal"/>
+   </widget>
+   <addaction name="menuArquivo"/>
+   <addaction name="menuManipulate"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionRotate">
+   <property name="text">
+    <string>Rotate</string>
+   </property>
+  </action>
+  <action name="actionMirrorVertical">
+   <property name="text">
+    <string>Mirror Vertical</string>
+   </property>
+    </action>
+    <action name="actionMirrorHorizontal">
+    <property name="text">
+        <string>Mirror Horizontal</string>
+    </property>
+    </action>
+    
+  <action name="actionArquivo">
+   <property name="text">
+    <string>Arquivo</string>
+   </property>
+  </action>
+  <action name="actionAbrir">
+   <property name="text">
+    <string>Abrir</string>
+   </property>
+  </action>
+  <action name="actionSalvar">
+   <property name="text">
+    <string>Salvar</string>
+   </property>
+  </action>
+  <action name="actionFechar">
+   <property name="text">
+    <string>Fechar</string>
+   </property>
+  </action>
+  <action name="actionTranslate">
+   <property name="text">
+    <string>Translate</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

@@ -1,0 +1,9 @@
+/home/edinho/Documents/PDI_CPP/PDI/CMakeFiles/PDI.dir
+/home/edinho/Documents/PDI_CPP/PDI/CMakeFiles/edit_cache.dir
+/home/edinho/Documents/PDI_CPP/PDI/CMakeFiles/rebuild_cache.dir
+/home/edinho/Documents/PDI_CPP/PDI/CMakeFiles/list_install_components.dir
+/home/edinho/Documents/PDI_CPP/PDI/CMakeFiles/install.dir
+/home/edinho/Documents/PDI_CPP/PDI/CMakeFiles/install/local.dir
+/home/edinho/Documents/PDI_CPP/PDI/CMakeFiles/install/strip.dir
+/home/edinho/Documents/PDI_CPP/PDI/CMakeFiles/PDI_autogen_timestamp_deps.dir
+/home/edinho/Documents/PDI_CPP/PDI/CMakeFiles/PDI_autogen.dir

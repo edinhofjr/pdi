@@ -1,0 +1,20 @@
+{
+	"BUILD_DIR" : "/home/edinho/Documents/PDI_CPP/PDI/PDI_autogen",
+	"CMAKE_BINARY_DIR" : "/home/edinho/Documents/PDI_CPP/PDI",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/edinho/Documents/PDI_CPP/PDI",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/edinho/Documents/PDI_CPP/PDI",
+	"CMAKE_SOURCE_DIR" : "/home/edinho/Documents/PDI_CPP/PDI",
+	"GENERATOR" : "Unix Makefiles",
+	"INCLUDE_DIR" : "/home/edinho/Documents/PDI_CPP/PDI/PDI_autogen/include",
+	"INPUTS" : [ "/home/edinho/Documents/PDI_CPP/PDI/images/no-image.png" ],
+	"LOCK_FILE" : "/home/edinho/Documents/PDI_CPP/PDI/CMakeFiles/PDI_autogen.dir/AutoRcc_resources_EWIEGA46WW_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "resources" ],
+	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
+	"OUTPUT_NAME" : "qrc_resources.cpp",
+	"RCC_EXECUTABLE" : "/usr/lib/qt6/libexec/rcc",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "/home/edinho/Documents/PDI_CPP/PDI/CMakeFiles/PDI_autogen.dir/AutoRcc_resources_EWIEGA46WW_Used.txt",
+	"SOURCE" : "/home/edinho/Documents/PDI_CPP/PDI/resources.qrc",
+	"VERBOSITY" : 0
+}

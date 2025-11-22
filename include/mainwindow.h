@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QLabel>
+#include <image.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -19,10 +20,21 @@ public:
     ~MainWindow();
 private:
     Ui::MainWindow *ui;
-    QString filePath;
     QLabel *label;
+    Image *image;
+
+    void setImage(Image*);
+    void setImage(const char*);
+    void setImageBuffer(unsigned char*);
+    void display();
+    void replaceImage(Image*);
 
 private slots:
     void onExplore();
+    void onTranslate();
+    void onRotate();
+    void onMirrorHorizontal();
+    void onMirrorVertical();
 };
+
 #endif // MAINWINDOW_H
