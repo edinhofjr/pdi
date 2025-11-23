@@ -8,6 +8,7 @@
 #include <jpeglib.h>
 #include "stb_image.h"
 #include <transformdialog.h>
+#include "mainwindow.h"
 
 static QImage QImageFromImage(const Image* img) {
     if (!img || !img->pixels || img->w <= 0 || img->h <= 0)
@@ -49,8 +50,11 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionRotate, &QAction::triggered, this, &MainWindow::onRotate);
     connect(ui->actionMirrorHorizontal, &QAction::triggered, this, &MainWindow::onMirrorHorizontal);
     connect(ui->actionMirrorVertical, &QAction::triggered, this, &MainWindow::onMirrorVertical);
-    
-    setImage(":/images/images/no-image.png");
+    connect(ui->actionBrightness, &QAction::triggered, this, &MainWindow::onBrightness);
+    connect(ui->actionContrast, &QAction::triggered, this, &MainWindow::onContrast);
+    connect(ui->actionGrayscale, &QAction::triggered, this, &MainWindow::onGrayscale);
+    connect(ui->actionThreshold, &QAction::triggered, this, &MainWindow::onThreshold);
+    connect(ui->actionDilation, &QAction::triggered, this, &MainWindow::onDilation);
 }
 
 MainWindow::~MainWindow() {
@@ -133,4 +137,57 @@ void MainWindow::onMirrorHorizontal() {
 
 void MainWindow::onMirrorVertical() {
     this->replaceImage(image->mirror_v());
+}
+
+void MainWindow::onBrightness() {
+     TransformDialog dlg(
+        {
+            {"Brightness Adjustment", "0"}
+        },
+        this
+    );
+
+    if (dlg.exec() == QDialog::Accepted) {
+        std::vector<QString> values = dlg.getValues();
+        int adjustment = values[0].toInt();
+        this->replaceImage(image->brightness(adjustment));
+    }
+}
+
+void MainWindow::onContrast() {
+     TransformDialog dlg(
+        {
+            {"Contrast Factor", "1.0"}
+        },
+        this
+    );
+
+    if (dlg.exec() == QDialog::Accepted) {
+        std::vector<QString> values = dlg.getValues();
+        float factor = values[0].toFloat();
+        this->replaceImage(image->contrast(factor));
+    }
+}
+
+void MainWindow::onThreshold() {
+     TransformDialog dlg(
+        {
+            {"Threshold Value", "128"}
+        },
+        this
+    );
+
+    if (dlg.exec() == QDialog::Accepted) {
+        std::vector<QString> values = dlg.getValues();
+        int threshold = values[0].toInt();
+        this->replaceImage(image->threshold(threshold));
+    }
+}
+
+void MainWindow::onDilation() {
+
+}
+
+void MainWindow::onGrayscale() {
+    this->replaceImage(image->gray_scale());
 }

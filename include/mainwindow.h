@@ -25,7 +25,6 @@ private:
 
     void setImage(Image*);
     void setImage(const char*);
-    void setImageBuffer(unsigned char*);
     void display();
     void replaceImage(Image*);
 
@@ -35,6 +34,11 @@ private slots:
     void onRotate();
     void onMirrorHorizontal();
     void onMirrorVertical();
+    void onBrightness();
+    void onContrast();
+    void onGrayscale();
+    void onThreshold();
+    void onDilation();
 };
 
 #endif // MAINWINDOW_H

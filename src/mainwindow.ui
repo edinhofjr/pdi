@@ -1,91 +1,145 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>800</width>
-    <height>600</height>
-   </rect>
-  </property>
-  <property name="windowTitle">
-   <string>MainWindow</string>
-  </property>
-  <widget class="QWidget" name="centralwidget"/>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>800</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menuArquivo">
-    <property name="title">
-     <string>Arquivo</string>
+  <class>MainWindow</class>
+  <widget class="QMainWindow" name="MainWindow">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>800</width>
+        <height>600</height>
+      </rect>
     </property>
-    <addaction name="actionAbrir"/>
-    <addaction name="actionSalvar"/>
-    <addaction name="actionFechar"/>
-   </widget>
-   <widget class="QMenu" name="menuManipulate">
-    <property name="title">
-     <string>Manipulate</string>
+    <property name="windowTitle">
+      <string>MainWindow</string>
     </property>
-    <addaction name="actionTranslate"/>
-    <addaction name="actionRotate"/>
-    <addaction name="actionMirrorVertical"/>
-    <addaction name="actionMirrorHorizontal"/>
-   </widget>
-   <addaction name="menuArquivo"/>
-   <addaction name="menuManipulate"/>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionRotate">
-   <property name="text">
-    <string>Rotate</string>
-   </property>
-  </action>
-  <action name="actionMirrorVertical">
-   <property name="text">
-    <string>Mirror Vertical</string>
-   </property>
+    <widget class="QWidget" name="centralwidget" />
+    <widget class="QMenuBar" name="menubar">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>800</width>
+          <height>22</height>
+        </rect>
+      </property>
+
+      <widget class="QMenu" name="menuArquivo">
+        <property name="title">
+          <string>Arquivo</string>
+        </property>
+        <addaction name="actionAbrir" />
+        <addaction name="actionSalvar" />
+        <addaction name="actionFechar" />
+      </widget>
+
+      <widget class="QMenu" name="menuManipulate">
+        <property name="title">
+          <string>Manipulate</string>
+        </property>
+        <addaction name="actionTranslate" />
+        <addaction name="actionRotate" />
+        <addaction name="actionMirrorVertical" />
+        <addaction name="actionMirrorHorizontal" />
+      </widget>
+
+      <widget class="QMenu" name="menuFilter">
+        <property name="title">
+          <string>Filter</string>
+        </property>
+        <addaction name="actionBrightness" />
+        <addaction name="actionContrast" />
+        <addaction name="actionGrayscale" />
+        <addaction name="actionThreshold" />
+      </widget>
+
+      <widget class="QMenu" name="menuMorph">
+        <property name="title">
+          <string>Filter</string>
+        </property>
+        <addaction name="actionDilation" />
+        <addaction name="actionErosion" />
+        <addaction name="actionOpening" />
+        <addaction name="actionClosining" />
+      </widget>
+
+      <addaction name="menuArquivo" />
+      <addaction name="menuManipulate" />
+      <addaction name="menuFilter" />
+    </widget>
+    <widget class="QStatusBar" name="statusbar" />
+    <action name="actionRotate">
+      <property name="text">
+        <string>Rotate</string>
+      </property>
+
+
+    </action>
+
+    <action name="actionArquivo">
+      <property name="text">
+        <string>Arquivo</string>
+      </property>
+    </action>
+    <action name="actionAbrir">
+      <property name="text">
+        <string>Abrir</string>
+      </property>
+    </action>
+    <action name="actionSalvar">
+      <property name="text">
+        <string>Salvar</string>
+      </property>
+    </action>
+    <action name="actionFechar">
+      <property name="text">
+        <string>Fechar</string>
+      </property>
+    </action>
+
+    <action name="actionMirrorVertical">
+      <property name="text">
+        <string>Mirror Vertical</string>
+      </property>
     </action>
     <action name="actionMirrorHorizontal">
-    <property name="text">
+      <property name="text">
         <string>Mirror Horizontal</string>
-    </property>
+      </property>
     </action>
-    
-  <action name="actionArquivo">
-   <property name="text">
-    <string>Arquivo</string>
-   </property>
-  </action>
-  <action name="actionAbrir">
-   <property name="text">
-    <string>Abrir</string>
-   </property>
-  </action>
-  <action name="actionSalvar">
-   <property name="text">
-    <string>Salvar</string>
-   </property>
-  </action>
-  <action name="actionFechar">
-   <property name="text">
-    <string>Fechar</string>
-   </property>
-  </action>
-  <action name="actionTranslate">
-   <property name="text">
-    <string>Translate</string>
-   </property>
-  </action>
- </widget>
- <resources/>
- <connections/>
+    <action name="actionTranslate">
+      <property name="text">
+        <string>Translate</string>
+      </property>
+    </action>
+
+    <action name="actionBrightness">
+      <property name="text">
+        <string>Brightness</string>
+      </property>
+    </action>
+    <action name="actionContrast">
+      <property name="text">
+        <string>Contrast</string>
+      </property>
+    </action>
+    <action name="actionGrayscale">
+      <property name="text">
+        <string>Grayscale</string>
+      </property>
+    </action>
+    <action name="actionThreshold">
+      <property name="text">
+        <string>Threshold</string>
+      </property>
+    </action>
+    <action name="actionDilation">
+      <property name="text">
+        <string>Dilation</string>
+      </property>
+    </action>
+
+  </widget>
+  <resources />
+  <connections />
 </ui>
