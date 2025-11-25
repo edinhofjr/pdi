@@ -11,6 +11,8 @@ public:
 
     void save(const char* filename) const;
 
+    void save_png(const char *filename) const;
+
     std::string data() const;
 
     Image *translate(int dx, int dy);
@@ -18,12 +20,21 @@ public:
     Image* mirror_h();
     Image* mirror_v();
 
-    Image* brightness(int);
-    Image* contrast(float);
-    Image *threshold(int threshold);
-    Image *gray_scale();
-    Image* tunning();
+    Image *resize(float scale);
 
+    Image *brightness(int);
+    Image* contrast(float);
+    Image *dilate();
+    Image *erosion();
+    Image *opening();
+    Image *closing();
+    Image *threshold(int threshold);
+    Image* gray_scale();
+
+    Image* high_pass();
+    Image* low_pass();
+
+    
     int w;
     int h;
     int channels;
