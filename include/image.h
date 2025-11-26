@@ -39,6 +39,7 @@ public:
     int h;
     int channels;
     unsigned char* pixels;
+    unsigned char *get_pixel(int x, int y);
 };
 
 #endif // IMAGE_H
