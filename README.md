@@ -2,6 +2,14 @@
 
 Projeto exemplo em C++ usando Qt (widgets) e CMake para estudos e experimentos em processamento digital de imagens.
 
+## Implementações
+
+Os algoritmos estão contidos no arquivo src/image.cpp com seu header em include/image.h
+
+## Desafio
+
+O algoritmo do desafio foi implementado no arquivo src/challenge.cpp
+
 ## Visão geral
 
 Este repositório contém uma aplicação desktop (Qt) para operações básicas de processamento de imagem. A interface gráfica está em `src/mainwindow.ui` e a lógica em `src/`.
